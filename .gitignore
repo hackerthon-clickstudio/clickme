@@ -1,36 +1,46 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# === 공통 ===
 .DS_Store
+Thumbs.db
 *.pem
+.idea/
+.vscode/
 
-# debug
+# 시크릿: .env는 Git 제외, .env.example만 커밋
+.env
+.env.*
+!.env.example
+
+# === 프론트 (apps/web — Next.js/TypeScript) ===
+node_modules/
+.pnp
+.pnp.js
+.next/
+out/
+build/
+coverage/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# local env files
-.env*.local
-.env
+# === 백엔드 (apps/backend — Python 3.12/uv) ===
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.python-version
+*.egg-info/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+.coverage.*
 
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# === 인프라/로그 ===
+*.log
+docker-compose.override.yml
