@@ -1,0 +1,239 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════════════════════════════════════
+   디자인 토큰 (shadcn 호환 · RGB 채널 트리플릿) — click-me 디자인 시스템 재사용
+   - 값은 "R G B" 형태로 저장하고 tailwind에서 rgb(var(--x) / <alpha-value>)로 매핑.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --font-sans: 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+
+  /* surface (배경 위계) — 슬레이트 뉴트럴 */
+  --surface-0: 248 250 252; /* #F8FAFC 페이지 */
+  --surface-1: 241 245 249; /* #F1F5F9 카드바닥/hover/track */
+  --surface-2: 255 255 255; /* #FFFFFF 카드 */
+  --surface-3: 255 255 255; /* #FFFFFF 팝오버 */
+
+  /* shadcn 코어 */
+  --background: 248 250 252;
+  --foreground: 15 23 42; /* #0F172A */
+  --card: 255 255 255;
+  --card-foreground: 15 23 42;
+  --popover: 255 255 255;
+  --popover-foreground: 15 23 42;
+
+  /* text 위계 (ink 스케일) — 슬레이트 */
+  --text-primary: 15 23 42; /* #0F172A */
+  --text-secondary: 71 85 105; /* #475569 */
+  --text-tertiary: 100 116 139; /* #64748B */
+  --text-muted: 148 163 184; /* #94A3B8 */
+  --text-disabled: 203 213 225; /* #CBD5E1 */
+
+  /* border (line 스케일) — 슬레이트 */
+  --border: 226 232 240; /* #E2E8F0 */
+  --border-strong: 203 213 225; /* #CBD5E1 */
+  --border-stronger: 148 163 184; /* #94A3B8 */
+  --input: 226 232 240;
+  --ring: 37 99 235;
+
+  /* primary (브랜드 파랑 #2563EB) */
+  --primary: 37 99 235;
+  --primary-hover: 29 78 216; /* #1D4ED8 */
+  --primary-subtle: 239 246 255; /* #EFF6FF */
+  --primary-foreground: 255 255 255;
+
+  /* accent (shadcn 뉴트럴 hover 강조 — ghost 버튼·드롭다운 hover) */
+  --accent: 241 245 249; /* #F1F5F9 */
+  --accent-foreground: 51 65 85; /* #334155 */
+
+  /* point (AI 포인트 인디고 #6366F1 — 시뮬·생성 계열 전용, 화면당 1개) */
+  --point: 99 102 241;
+  --point-hover: 79 70 229; /* #4F46E5 */
+  --point-subtle: 238 242 255; /* #EEF2FF */
+  --point-foreground: 255 255 255;
+
+  /* secondary (뉴트럴 버튼) */
+  --secondary: 241 245 249; /* #F1F5F9 */
+  --secondary-foreground: 51 65 85; /* #334155 */
+
+  /* muted */
+  --muted: 241 245 249;
+  --muted-foreground: 100 116 139; /* #64748B */
+
+  /* semantic — success */
+  --success: 22 163 74; /* #16A34A */
+  --success-foreground: 255 255 255;
+  --success-subtle: 220 252 231; /* #DCFCE7 */
+  --success-border: 187 247 208; /* #BBF7D0 */
+
+  /* semantic — warning */
+  --warning: 217 119 6; /* #D97706 */
+  --warning-foreground: 255 255 255;
+  --warning-subtle: 254 243 199; /* #FEF3C7 */
+  --warning-border: 253 230 138; /* #FDE68A */
+
+  /* semantic — danger / destructive */
+  --danger: 220 38 38; /* #DC2626 */
+  --danger-foreground: 255 255 255;
+  --danger-subtle: 254 226 226; /* #FEE2E2 */
+  --danger-border: 254 202 202; /* #FECACA */
+  --destructive: 220 38 38;
+  --destructive-foreground: 255 255 255;
+
+  /* semantic — info */
+  --info: 37 99 235;
+  --info-foreground: 255 255 255;
+  --info-subtle: 239 246 255;
+  --info-border: 191 219 254; /* #BFDBFE */
+
+  /* radius */
+  --radius: 0.75rem; /* 12px 카드 기준 */
+
+  /* shadow (라이트) */
+  --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06);
+  --shadow-md: 0 2px 4px -1px rgb(15 23 42 / 0.06), 0 4px 12px -2px rgb(15 23 42 / 0.08);
+  --shadow-lg: 0 8px 16px -4px rgb(15 23 42 / 0.08), 0 16px 32px -8px rgb(15 23 42 / 0.12);
+}
+
+.dark {
+  /* surface — 딥 슬레이트 */
+  --surface-0: 15 23 42; /* #0F172A 페이지 */
+  --surface-1: 20 29 45; /* #141D2D 카드바닥/hover */
+  --surface-2: 31 41 55; /* #1F2937 카드 */
+  --surface-3: 42 53 66; /* #2A3542 팝오버 */
+
+  --background: 15 23 42;
+  --foreground: 248 250 252; /* #F8FAFC */
+  --card: 31 41 55;
+  --card-foreground: 248 250 252;
+  --popover: 42 53 66;
+  --popover-foreground: 248 250 252;
+
+  --text-primary: 248 250 252;
+  --text-secondary: 203 213 225; /* #CBD5E1 */
+  --text-tertiary: 148 163 184; /* #94A3B8 */
+  --text-muted: 100 116 139; /* #64748B */
+  --text-disabled: 71 85 105; /* #475569 */
+
+  --border: 6 10 19;
+  --border-strong: 3 5 10;
+  --border-stronger: 0 0 0;
+  --input: 6 10 19;
+  --ring: 59 130 246;
+
+  --primary: 59 130 246; /* #3B82F6 */
+  --primary-hover: 96 165 250; /* #60A5FA */
+  --primary-subtle: 23 37 61; /* #17253D */
+  --primary-foreground: 255 255 255;
+
+  --accent: 30 41 59; /* #1E293B */
+  --accent-foreground: 226 232 240; /* #E2E8F0 */
+
+  --point: 129 140 248; /* #818CF8 */
+  --point-hover: 165 180 252; /* #A5B4FC */
+  --point-subtle: 30 36 64; /* #1E2440 */
+  --point-foreground: 255 255 255;
+
+  --secondary: 30 41 59;
+  --secondary-foreground: 226 232 240;
+
+  --muted: 30 41 59;
+  --muted-foreground: 148 163 184;
+
+  --success: 34 197 94; /* #22C55E */
+  --success-foreground: 15 23 42;
+  --success-subtle: 11 46 23; /* #0B2E17 */
+  --success-border: 20 83 45; /* #14532D */
+
+  --warning: 251 191 36; /* #FBBF24 */
+  --warning-foreground: 15 23 42;
+  --warning-subtle: 51 39 10; /* #33270A */
+  --warning-border: 120 53 15; /* #78350F */
+
+  --danger: 248 113 113; /* #F87171 */
+  --danger-foreground: 15 23 42;
+  --danger-subtle: 58 20 22; /* #3A1416 */
+  --danger-border: 127 29 29; /* #7F1D1D */
+  --destructive: 248 113 113;
+  --destructive-foreground: 15 23 42;
+
+  --info: 96 165 250; /* #60A5FA */
+  --info-foreground: 15 23 42;
+  --info-subtle: 23 37 61; /* #17253D */
+  --info-border: 30 58 95; /* #1E3A5F */
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 4px -1px rgb(0 0 0 / 0.4), 0 4px 12px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 8px 16px -4px rgb(0 0 0 / 0.5), 0 16px 32px -8px rgb(0 0 0 / 0.6);
+}
+
+/* 타이포그래피 스케일 유틸 (제목~캡션 통일) */
+@layer components {
+  .text-h1 {
+    @apply text-3xl font-bold tracking-tight text-ink sm:text-4xl;
+  }
+  .text-h2 {
+    @apply text-2xl font-bold tracking-tight text-ink;
+  }
+  .text-h3 {
+    @apply text-lg font-semibold tracking-tight text-ink;
+  }
+  .text-body {
+    @apply text-sm text-ink-secondary;
+  }
+  .text-caption {
+    @apply text-xs text-ink-tertiary;
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--surface-0));
+  color: rgb(var(--text-primary));
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--border));
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--text-tertiary));
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--border)) transparent;
+}
+
+/* ── 키보드 접근성 ────────────────────────────────────────────────────────
+   마우스 클릭 포커스는 outline 숨기고, 키보드 Tab/Enter 포커스만 링 표시. */
+:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--ring)) !important;
+  outline-offset: 2px !important;
+  border-radius: 6px !important;
+}
