@@ -1,0 +1,6 @@
+# 프론트 타입 생성 원본. 백엔드 API 변경 시 이 파일을 갱신하고 스크립트로 클라이언트를 재생성한다.
+openapi: 3.1.0
+info:
+  title: ClickMe API
+  version: 0.1.0
+paths: {}

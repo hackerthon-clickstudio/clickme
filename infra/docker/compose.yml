@@ -1,0 +1,3 @@
+# 로컬 개발용 컴포즈: web, api, worker, postgres.
+# TODO: 스켈레톤 단계. 서비스 정의 예정.
+services: {}
