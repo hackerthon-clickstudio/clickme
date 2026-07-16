@@ -3,7 +3,7 @@
 AI 기반 광고 캠페인 도구. 광고 소재 생성(creative) → 성과 예측(simulation) → 캠페인 집행/최적화(campaign).
 
 - 백엔드: Python 3.12, FastAPI, SQLAlchemy, Alembic, PostgreSQL
-- 프론트: Next.js (App Router), TypeScript, 모바일 우선
+- 프론트: Next.js (App Router), TypeScript, Tailwind CSS + Radix UI(shadcn 스타일). **반응형** — 웹·모바일 모두 대응 (모바일 기본 스타일 → `md:` 이상 데스크톱 분기)
 - 채팅/에이전트(orchestration, conversation, knowledge)는 **아직 없음**. 나중에 추가 예정이므로 지금 만들지 말 것.
 
 ## 폴더 구조
@@ -15,14 +15,16 @@ clickme/
 │  │  ├─ .env.example
 │  │  ├─ package.json
 │  │  ├─ next.config.ts
+│  │  ├─ tailwind.config.ts             # 디자인 토큰(globals.css CSS 변수) 매핑
 │  │  ├─ tsconfig.json
 │  │  ├─ src/
 │  │  │  ├─ app/                        # 라우팅과 화면 조립만. 로직 금지
-│  │  │  │  ├─ layout.tsx
+│  │  │  │  ├─ layout.tsx               # AppShell로 감싼다
+│  │  │  │  ├─ globals.css              # 디자인 토큰(shadcn 호환 CSS 변수) 원본
 │  │  │  │  ├─ page.tsx
-│  │  │  │  ├─ campaigns/[campaignId]/page.tsx
-│  │  │  │  ├─ creatives/[creativeId]/page.tsx
-│  │  │  │  └─ simulations/[simulationId]/page.tsx
+│  │  │  │  ├─ campaigns/{page.tsx, [campaignId]/page.tsx}
+│  │  │  │  ├─ creatives/{page.tsx, [creativeId]/page.tsx}
+│  │  │  │  └─ simulations/{page.tsx, [simulationId]/page.tsx}
 │  │  │  ├─ modules/                    # 기능별. 백엔드 모듈과 1:1
 │  │  │  │  ├─ campaign/{api,components,hooks,types}/
 │  │  │  │  ├─ creative/{api,components,hooks,types}/
@@ -30,7 +32,7 @@ clickme/
 │  │  │  └─ shared/
 │  │  │     ├─ api/client.ts
 │  │  │     ├─ api/generated/           # OpenAPI 자동 생성. 직접 수정 금지
-│  │  │     ├─ ui/                      # Button, Dialog, BottomSheet 등
+│  │  │     ├─ ui/                      # AppShell, Button, Dialog, Sheet, BottomSheet 등 (Radix+cva)
 │  │  │     ├─ hooks/
 │  │  │     └─ lib/
 │  │  ├─ public/
@@ -161,7 +163,9 @@ clickme/
 
 - Python: 파일/함수 snake_case, 클래스 PascalCase. 타입 힌트 필수. ports는 `typing.Protocol` 사용.
 - Python 포맷·린트는 Ruff (line-length 100, double quotes). 백엔드 `.py` 수정 후 커밋 전에 `cd apps/backend && uv run ruff format . && uv run ruff check . --fix` 실행. CI가 동일하게 검증하므로 로컬 선통과 필수.
-- TypeScript: 컴포넌트 PascalCase, 그 외 camelCase. ESLint로 검증.
+- TypeScript: 컴포넌트 PascalCase, 그 외 camelCase. ESLint로 검증. 프론트 `.ts/.tsx` 수정 후 커밋 전에 `cd apps/web && npm run lint` 통과 필수.
+- 스타일은 Tailwind 유틸리티만 사용하고, 색상은 `globals.css`의 디자인 토큰(CSS 변수, click-me 디자인 시스템 재사용)으로만. 색상값 하드코딩 금지.
+- 반응형: 모바일 기본 스타일을 먼저 쓰고 `md:` 이상에서 데스크톱 분기. 내비게이션은 AppShell이 담당(데스크톱 사이드바 ↔ 모바일 하단 탭). 모바일 오버레이는 Dialog보다 BottomSheet 우선.
 - 시크릿은 `.env`(Git 제외)에만. 코드에 하드코딩 금지. `.env.example`에는 변수 이름만.
 - DB 스키마 변경은 반드시 Alembic 마이그레이션으로.
 - 커밋 전 아키텍처 테스트(`tests/architecture/`) 통과 필수. 실행: `cd apps/backend && uv run pytest tests/architecture -v`.
