@@ -1,0 +1,21 @@
+{
+  "name": "clickme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "클릭미 모노레포 개발 명령어 허브 (백엔드/프론트 실행·테스트·린트)",
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "cd apps/backend && uv run uvicorn clickme.entrypoints.api.main:create_app --factory --reload --port 8000",
+    "dev:web": "cd apps/web && npm run dev",
+    "worker": "cd apps/backend && uv run python -m clickme.entrypoints.worker.main",
+    "test": "cd apps/backend && uv run pytest",
+    "test:arch": "cd apps/backend && uv run pytest tests/architecture -v",
+    "test:web": "cd apps/web && npm test",
+    "lint": "cd apps/backend && uv run ruff check . && cd ../web && npm run lint",
+    "fmt": "cd apps/backend && uv run ruff format . && uv run ruff check . --fix",
+    "gen:api": "powershell -File scripts/generate_api_client.ps1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
